@@ -1,21 +1,14 @@
 import React from 'react';
-import './App.css'
+// import './App.css'
+import { Header } from './components/layouts/Header';
+import {Map} from './components/Map/Map'
 
 export const App = () => {
  
   return (
    <>
-    <header>
-      <h1>
-        <strong>Mega</strong> Ads
-      </h1>
-      <button>Add your add</button>
-      <div className="search">
-        <input type="text" />
-        <button>Search</button>
-      </div>
-    </header>
-    <div className="map"></div>
+    <Header/>
+    <Map />
    </>
   );
 }
