@@ -6,6 +6,7 @@ import '../../utils/fix-map.icon'
 import 'leaflet/dist/leaflet.css'
 import './Map.css'
 import { SearchContext } from '../../context/search.context'
+import {SingleAd} from './SingleAd'
 
 export const Map = () => {
     const {search} = useContext(SearchContext)
@@ -13,11 +14,11 @@ export const Map = () => {
 
     useEffect(() => {
         (async() => {
-            const data = await(await fetch("http://localhost:3001/ad/search")).json()
+            const data = await(await fetch(`http://localhost:3001/ad/search/${search}`)).json()
             setAds(data);
             
         })()
-    }, [])
+    }, [search])
 
     // useEffect(() => {
     //     console.log(`Make a request: ${search}`);
@@ -35,17 +36,12 @@ export const Map = () => {
                     return (
                         <Marker key={ad.id} position={[ad.lat, ad.lon]}>
                             <Popup>
-                                <h2>{ad.id}</h2>
+                                <SingleAd id={ad.id}/>
                             </Popup>
                         </Marker>
                     )
                 })
             }
-            <Marker position={[53.34110, -6.25251]}>
-                <Popup>
-                    <h2>National Gallery of Ireland</h2>
-                </Popup>
-            </Marker>
         </MapContainer>
     </div>
   )
